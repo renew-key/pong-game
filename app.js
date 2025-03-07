@@ -58,57 +58,55 @@ pause.addEventListener("click", () => {
     clearInterval(game); // 停止遊戲
   }
 });
+
 let difficulty = "normal"; // 預設為 normal
 // 三個難度的按鈕
-simpleBtn.addEventListener("click", () => {
-  difficulty = "simple";
+function initialScore() {
   player_score = 0;
   computer_score = 0;
   playerScore.innerText = `Player Score: ${player_score}`;
   ComputerScore.innerText = `Computer Score: ${computer_score}`;
-  normalBtn.style.color = "black";
-  normalBtn.style.fontWeight = "none";
-  normalBtn.style.backgroundColor = "yellow";
-  difficultBtn.style.color = "black";
-  difficultBtn.style.fontWeight = "none";
-  difficultBtn.style.backgroundColor = "yellow";
-  simpleBtn.style.color = "brown";
-  simpleBtn.style.backgroundColor = "lightgreen";
-  simpleBtn.style.fontWeight = "bold";
+}
+function updateButtonStyles(activeBtn) {
+  const buttons = [simpleBtn, normalBtn, difficultBtn];
+  buttons.forEach((btn) => {
+    if (btn === activeBtn) {
+      btn.style.color = "brown";
+      btn.style.backgroundColor = "lightgreen";
+      btn.style.fontWeight = "bold";
+    } else {
+      btn.style.color = "black";
+      btn.style.backgroundColor = "yellow";
+      btn.style.fontWeight = "none";
+    }
+  });
+}
+
+simpleBtn.addEventListener("click", () => {
+  if (difficulty == "simple") {
+    return;
+  }
+  difficulty = "simple";
+  initialScore();
+  updateButtonStyles(simpleBtn);
 });
 
 normalBtn.addEventListener("click", () => {
+  if (difficulty == "normal") {
+    return;
+  }
   difficulty = "normal";
-  player_score = 0;
-  computer_score = 0;
-  playerScore.innerText = `Player Score: ${player_score}`;
-  ComputerScore.innerText = `Computer Score: ${computer_score}`;
-  normalBtn.style.color = "brown";
-  normalBtn.style.backgroundColor = "lightgreen";
-  normalBtn.style.fontWeight = "bold";
-  difficultBtn.style.color = "black";
-  difficultBtn.style.backgroundColor = "yellow";
-  difficultBtn.style.fontWeight = "none";
-  simpleBtn.style.color = "black";
-  simpleBtn.style.backgroundColor = "yellow";
-  simpleBtn.style.fontWeight = "none";
+  initialScore();
+  updateButtonStyles(normalBtn);
 });
 
 difficultBtn.addEventListener("click", () => {
+  if (difficulty == "difficult") {
+    return;
+  }
   difficulty = "difficult";
-  player_score = 0;
-  computer_score = 0;
-  playerScore.innerText = `Player Score: ${player_score}`;
-  ComputerScore.innerText = `Computer Score: ${computer_score}`;
-  normalBtn.style.color = "black";
-  normalBtn.style.fontWeight = "none";
-  normalBtn.style.backgroundColor = "yellow";
-  simpleBtn.style.color = "black";
-  simpleBtn.style.fontWeight = "none";
-  simpleBtn.style.backgroundColor = "yellow";
-  difficultBtn.style.color = "brown";
-  difficultBtn.style.backgroundColor = "lightgreen";
-  difficultBtn.style.fontWeight = "bold";
+  initialScore();
+  updateButtonStyles(difficultBtn);
 });
 
 function movePlayer(e) {
