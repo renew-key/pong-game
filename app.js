@@ -32,9 +32,6 @@ let player_speed = 10;
 // 設定電腦速度
 let computer_speed = 10;
 
-let startGame = false;
-let gameStarted = false;
-
 // 設定分數
 let player_score = 0;
 let computer_score = 0;
@@ -218,14 +215,12 @@ function hit() {
       scoreSong.play();
       player_score++;
       playerScore.innerText = `Player Score: ${player_score}`;
-      startGame = false;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       restart();
     } else if (ball_x >= canvas.width - radius) {
       scoreSong.play();
       computer_score++;
       ComputerScore.innerText = `Computer Score: ${computer_score}`;
-      startGame = false;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       restart();
     }
@@ -298,7 +293,6 @@ function restart() {
   player_y = canvas.height / 2 - plate_height / 2; // 玩家初始位置
   ball_x = -100;
   ball_y = -100;
-  startGame = false; // 遊戲尚未開始
   initial();
   countdownStart(); // 開始倒數計時
 }
@@ -329,7 +323,6 @@ function countdownStart() {
     ball_y = canvas.height / 2;
     ball_speed_x = unit * getRandomSign();
     ball_speed_y = unit * getRandomSign();
-    console.log("startGame");
     game = setInterval(draw, 25); // 開始遊戲，進行繪製
     pause.style.visibility = "visible";
     document.addEventListener("keydown", movePlayer); // 重新啟動鍵盤事件
