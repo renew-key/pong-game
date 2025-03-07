@@ -14,6 +14,7 @@ const radius = 10;
 const unit = 10;
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
+let startGame = false;
 let isPaused = false; // 新增一個變數來標記遊戲是否暫停
 let plate_width = 10;
 let plate_height = 100;
@@ -41,7 +42,7 @@ ComputerScore.innerText = `Computer Score: ${computer_score}`;
 const plobSound = new Audio("./sound/pong.ogg");
 const scoreSong = new Audio("./sound/score.ogg");
 
-pause.addEventListener("click", () => {
+function pauseGame() {
   if (!game) {
     return;
   }
@@ -54,7 +55,8 @@ pause.addEventListener("click", () => {
     isPaused = true; // 暫停遊戲
     clearInterval(game); // 停止遊戲
   }
-});
+}
+pause.addEventListener("click", pauseGame);
 
 let difficulty = "normal"; // 預設為 normal
 // 三個難度的按鈕
@@ -86,6 +88,8 @@ simpleBtn.addEventListener("click", () => {
   difficulty = "simple";
   initialScore();
   updateButtonStyles(simpleBtn);
+  if (startGame) restart();
+  // pauseGame();
 });
 
 normalBtn.addEventListener("click", () => {
@@ -95,6 +99,8 @@ normalBtn.addEventListener("click", () => {
   difficulty = "normal";
   initialScore();
   updateButtonStyles(normalBtn);
+  if (startGame) restart();
+  // pauseGame();
 });
 
 difficultBtn.addEventListener("click", () => {
@@ -104,6 +110,8 @@ difficultBtn.addEventListener("click", () => {
   difficulty = "difficult";
   initialScore();
   updateButtonStyles(difficultBtn);
+  if (startGame) restart();
+  // pauseGame();
 });
 
 function movePlayer(e) {
@@ -282,6 +290,7 @@ function drawCenterLine() {
 }
 
 function restart() {
+  startGame = false;
   pause.style.visibility = "hidden";
   clearInterval(game); // 停止遊戲
 
@@ -324,6 +333,7 @@ function countdownStart() {
     ball_speed_x = unit * getRandomSign();
     ball_speed_y = unit * getRandomSign();
     game = setInterval(draw, 25); // 開始遊戲，進行繪製
+    startGame = true;
     pause.style.visibility = "visible";
     document.addEventListener("keydown", movePlayer); // 重新啟動鍵盤事件
   }, 3000);
