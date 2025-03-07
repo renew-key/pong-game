@@ -41,6 +41,9 @@ let computer_score = 0;
 playerScore.innerText = `Player Score: ${player_score}`;
 ComputerScore.innerText = `Computer Score: ${computer_score}`;
 
+const plobSound = new Audio("./sound/pong.ogg");
+const scoreSong = new Audio("./sound/score.ogg");
+
 pause.addEventListener("click", () => {
   if (!game) {
     return;
@@ -204,15 +207,18 @@ function hit() {
     circleRectCollision(ball, player) ||
     circleRectCollision(ball, computer)
   ) {
+    plobSound.play();
     ball_speed_x *= -1; // 反彈
   } else {
     if (ball_x <= radius) {
+      scoreSong.play();
       player_score++;
       playerScore.innerText = `Player Score: ${player_score}`;
       startGame = false;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       restart();
     } else if (ball_x >= canvas.width - radius) {
+      scoreSong.play();
       computer_score++;
       ComputerScore.innerText = `Computer Score: ${computer_score}`;
       startGame = false;
