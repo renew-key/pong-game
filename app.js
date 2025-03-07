@@ -62,8 +62,6 @@ let difficulty = "normal"; // 預設為 normal
 // 三個難度的按鈕
 simpleBtn.addEventListener("click", () => {
   difficulty = "simple";
-  player_score = 0;
-  computer_score = 0;
   normalBtn.style.color = "black";
   normalBtn.style.fontWeight = "none";
   normalBtn.style.backgroundColor = "yellow";
@@ -77,8 +75,6 @@ simpleBtn.addEventListener("click", () => {
 
 normalBtn.addEventListener("click", () => {
   difficulty = "normal";
-  player_score = 0;
-  computer_score = 0;
   normalBtn.style.color = "brown";
   normalBtn.style.backgroundColor = "lightgreen";
   normalBtn.style.fontWeight = "bold";
@@ -92,8 +88,6 @@ normalBtn.addEventListener("click", () => {
 
 difficultBtn.addEventListener("click", () => {
   difficulty = "difficult";
-  player_score = 0;
-  computer_score = 0;
   normalBtn.style.color = "black";
   normalBtn.style.fontWeight = "none";
   normalBtn.style.backgroundColor = "yellow";
