@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="./img/Ball.ico"
+  >
+  <title>Pong</title>
+  <link
+    rel="stylesheet"
+    href="./styles/style.css"
+  />
+</head>
+
+<body>
+  <canvas
+    id="myCanvas"
+    width="1000"
+    height="500"
+    style="background-color: black;"
+  ></canvas>
+  <section class="btnGroup">
+    <button
+      id="Start"
+      type="button"
+      onclick="location.reload()"
+    >Start New Game</button>
+    <button id="simpleBtn">Simple</button>
+    <button id="normalBtn">Normal</button>
+    <button id="difficultBtn">Difficult</button>
+    <button
+      id="Pause"
+      type="button"
+    ></button>
+  </section>
+
+  <div class="score">
+    <span id="myScore"></span>
+    <span id="myScore2"></span>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
